@@ -65,6 +65,10 @@ export default function Compiler() {
                 // Remove "snps_" and replace underscores with spaces
                 var formattedTitle = snpTitle.replace(/^snps_/i, '').replace(/_/g, ' ');
 
+                // Get the category of the SNP
+                var category = snpsFromJsonFiles.find((item) => item.snps.includes(snp)).category;
+                var formattedCategory = category.charAt(0).toUpperCase() + category.slice(1);
+
                 // Capitalize the first letter of each word
                 formattedTitle = formattedTitle.replace(/\b\w/g, (c) => c.toUpperCase());
 
@@ -84,6 +88,7 @@ export default function Compiler() {
                     mag: magnitude,
                     rep: repute,
                     desc: summary,
+                    category: formattedCategory,
                   });
                 }
               } else {
@@ -120,7 +125,7 @@ export default function Compiler() {
             mag={item.mag}
             rep={item.rep}
             snplink={item.url}
-            category="Appearance"
+            category={item.category}
           />
         ))
       ) : (

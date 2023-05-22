@@ -11,6 +11,7 @@ const statuses = {
 const images = {
     Appearance: '/images/appearance-icon.png',
     Health: '/images/health-conditions-icon.png',
+    Intelligence: '/images/intelligence-icon.png',
 }
 
 function classNames(...classes) {

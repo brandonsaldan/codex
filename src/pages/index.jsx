@@ -9,18 +9,18 @@ export default function Home() {
         <Disclosure as="nav" className="bg-white shadow-sm">
           {({ open }) => (
             <>
-              <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 justify-between">
                   <div className="flex">
                     <div className="flex flex-shrink-0 items-center">
                       <img
-                        className="block h-8 w-auto lg:hidden"
-                        src="https://cdn.discordapp.com/attachments/458182255375024132/1109295366714695770/logo.png"
+                        className="block h-6 w-auto lg:hidden"
+                        src="images/logo.png"
                         alt="Your Company"
                       />
                       <img
-                        className="hidden h-8 w-auto lg:block"
-                        src="https://cdn.discordapp.com/attachments/458182255375024132/1109295366714695770/logo.png"
+                        className="hidden h-6 w-auto lg:block"
+                        src="images/logo.png"
                         alt="Your Company"
                       />
                     </div>
@@ -40,6 +40,10 @@ export default function Home() {
           <main>
             <div className="mt-4 mx-auto max-w-4xl sm:px-6 lg:px-8">
               <DropUpload />
+            </div>
+            <div className="mt-10 mx-auto max-w-4xl sm:px-6 lg:px-8 text-center">
+              <p className="text-sm text-gray-500">All processing is done in-browser. Your files are not saved.</p>
+              <p className="text-sm text-gray-500">Built by <a className="text-blue-500 hover:text-blue-700 transition ease-in-out duration-150" href="https://twitter.com/brandonsaldan">Brandon Saldan</a>. View source on <a className="text-blue-500 hover:text-blue-700 transition ease-in-out duration-150" href="https://github.com/brandonsaldan/codex">GitHub</a>.</p>
             </div>
           </main>
         </div>

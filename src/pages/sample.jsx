@@ -27,7 +27,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
-import Compiler from '../components/Compiler'
+import SampleCompiler from '../components/SampleCompiler'
 
 const filters = [
   { id: 1, name: 'Appearance', href: '#', initial: 'A', current: false },
@@ -353,10 +353,11 @@ export default function Results() {
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="min-w-0 flex-1">
                     <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
-                        Your Results
+                        Sample Report
                     </h2>
+                    <p className="text-sm font-medium leading-6 text-gray-500">This is a random sample report. Real reports are much longer and contain more types of information.</p>
                 </div>
-                <Compiler />
+                <SampleCompiler />
             </div>
           </main>
         </div>

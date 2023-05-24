@@ -9,9 +9,35 @@ const statuses = {
 }
 
 const images = {
-    Appearance: '/images/appearance-icon.png',
-    Health: '/images/health-conditions-icon.png',
-    Intelligence: '/images/intelligence-icon.png',
+    Ageing: '/images/icons/appearance-icon.png',
+    APOE: '/images/icons/health-icon.png',
+    Appearance: '/images/icons/appearance-icon.png',
+    BCHE: '/images/icons/health-icon.png',
+    Cannabis: '/images/icons/medicine-icon.png',
+    Coffee: '/images/icons/medicine-icon.png',
+    CYP: '/images/icons/health-icon.png',
+    DCDC2: '/images/icons/health-icon.png',
+    Dopamine: '/images/icons/health-icon.png',
+    DRD4: '/images/icons/health-icon.png',
+    Drugbank: '/images/icons/medicine-icon.png',
+    Endurance: '/images/icons/endurance-icon.png',
+    G6PD: '/images/icons/health-icon.png',
+    GCH1: '/images/icons/health-icon.png',
+    Gs: '/images/icons/health-icon.png',
+    Haplogroup: '/images/icons/haplogroup-icon.png',
+    Health: '/images/icons/health-icon.png',
+    Histamine: '/images/icons/medicine-icon.png',
+    HLA: '/images/icons/health-icon.png',
+    Intelligence: '/images/icons/mental-icon.png',
+    Medicine: '/images/icons/medicine-icon.png',
+    Memory: '/images/icons/mental-icon.png',
+    Mendeliome: '/images/icons/health-icon.png',
+    Micronutrients: '/images/icons/medicine-icon.png',
+    Music: '/images/icons/music-icon.png',
+    NAT2: '/images/icons/health-icon.png',
+    Neanderthal: '/images/icons/haplogroup-icon.png',
+    Personality: '/images/icons/personality-icon.png',
+    
 }
 
 function classNames(...classes) {

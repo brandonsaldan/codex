@@ -58,13 +58,21 @@ export default function SNPCard({ title, snp, allele, desc, mag, rep, snplink, c
                     <div
                         className={classNames(
                             statuses[rep],
-                            'ml-3 rounded-md py-1 px-2 text-xs font-medium ring-1 ring-inset'
+                            'hidden sm:block ml-3 rounded-md py-1 px-2 text-xs font-medium ring-1 ring-inset'
                         )}
                         >
                         {rep}
                     </div>
                 </div>
                 <div className="text-sm font-medium leading-6 text-gray-900">{snp}{allele}</div>
+                <div
+                    className={classNames(
+                        statuses[rep],
+                        'block sm:hidden w-12 text-center rounded-md py-1 px-2 text-xs font-medium ring-1 ring-inset'
+                    )}
+                    >
+                    {rep}
+                </div>
             </div>
             <Menu as="div" className="relative ml-auto">
             <Menu.Button className="-m-2.5 block p-2.5 text-gray-400 hover:text-gray-500">

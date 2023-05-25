@@ -352,7 +352,7 @@ export default function Results() {
           <main className="py-4">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="min-w-0 flex-1">
-                    <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
+                    <h2 className="mb-2 sm:mb-0 text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
                         Sample Report
                     </h2>
                     <p className="text-sm font-medium leading-6 text-gray-500">This is a random sample report. Real reports are much longer and contain more types of information.</p>

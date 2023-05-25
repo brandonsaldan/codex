@@ -41,8 +41,13 @@ export default function Home() {
             <div className="mt-4 mx-auto max-w-4xl sm:px-6 lg:px-8">
               <DropUpload />
             </div>
-            <div className="mt-10 mx-auto max-w-4xl sm:px-6 lg:px-8 text-center">
+            <div className="mt-10 mx-auto max-w-4xl sm:px-6 lg:px-8 text-center hidden sm:block">
               <p className="text-sm text-gray-500">All processing is done in-browser. Your files are not saved.</p>
+              <p className="text-sm text-gray-500">Built by <a className="text-blue-500 hover:text-blue-700 transition ease-in-out duration-150" href="https://twitter.com/brandonsaldan">Brandon Saldan</a>. View source on <a className="text-blue-500 hover:text-blue-700 transition ease-in-out duration-150" href="https://github.com/brandonsaldan/codex">GitHub</a>.</p>
+            </div>
+            <div className="mt-10 mx-auto max-w-4xl sm:px-6 lg:px-8 text-center block sm:hidden">
+              <p className="text-sm text-gray-500">All processing is done in-browser.</p>
+              <p className="text-sm text-gray-500">Your files are not saved.</p>
               <p className="text-sm text-gray-500">Built by <a className="text-blue-500 hover:text-blue-700 transition ease-in-out duration-150" href="https://twitter.com/brandonsaldan">Brandon Saldan</a>. View source on <a className="text-blue-500 hover:text-blue-700 transition ease-in-out duration-150" href="https://github.com/brandonsaldan/codex">GitHub</a>.</p>
             </div>
           </main>

@@ -3,6 +3,7 @@ import SNPCard from './ui/SNPCard';
 import axios from 'axios';
 import { Cog6ToothIcon } from '@heroicons/react/24/outline'
 import { useRouter } from 'next/router'
+import { openDatabase } from './DropUpload';
 
 export default function Compiler() {
   const { pathname } = useRouter();
@@ -11,10 +12,30 @@ export default function Compiler() {
 
   useEffect(() => {
     if (pathname === '/results') {
-      const storedDNA = localStorage.getItem('snpsData');
-      if (storedDNA) {
-        setDNA(JSON.parse(storedDNA));
-      }
+      const readDataFromDB = async () => {
+        try {
+          const db = await openDatabase();
+          const transaction = db.transaction(['GeneticData'], 'readonly');
+          const objectStore = transaction.objectStore('GeneticData');
+          const getRequest = objectStore.get('snpsData');
+
+          getRequest.onsuccess = function (event) {
+            const storedDNA = getRequest.result;
+            if (storedDNA) {
+              const content = storedDNA.content;
+              setDNA(JSON.parse(content));
+            }
+          };
+
+          getRequest.onerror = function (event) {
+            console.log('Error retrieving data from database');
+          };
+        } catch (error) {
+          console.log('Error opening the database:', error);
+        }
+      };
+
+      readDataFromDB();
     }
   }, [pathname]);
 

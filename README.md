@@ -74,6 +74,10 @@ Huge thanks to the following organizations for making GeneCodex possible:
 
 Admittedly, this was a very large project for me to create. If you'd like to support GeneCodex, all I ask is that you star this repo and follow me on [Twitter](https://twitter.com/brandonsaldan).
 
+## Limitations
+
+Proper sorting and search functionality have not been added yet.
+
 ## License
 
 Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)

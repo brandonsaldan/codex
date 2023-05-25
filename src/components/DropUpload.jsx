@@ -2,9 +2,11 @@ import { useState, Fragment } from "react";
 import { Dialog, Transition } from '@headlessui/react'
 import { useRouter } from 'next/router'
 
+
 export default function DropUpload() {
     const [file, setFile] = useState(null);
     let [isProcessing, setIsProcessing] = useState(false)
+    var dna = require('dna2json');
 
     function fileProcessing() {
       setIsProcessing(true)
@@ -22,16 +24,18 @@ export default function DropUpload() {
       }
     };
 
-    const uploadToServer = async (event) => {    
+    const uploadToLocalStorage = async (event) => {    
       fileProcessing();
-      const body = new FormData();
-      body.append("file", file);
-      const response = await fetch("/api/upload", {
-        method: "POST",
-        body
+      const data = localStorage.getItem('uploadedFileContent');
+      dna.parse(data, function (err, snps) {
+        if (err) {
+          console.log(err);
+        } else {
+          localStorage.setItem('snpsData', JSON.stringify(snps));
+          console.log(snps)
+        }
       });
-      const data = await response.json();
-      localStorage.setItem('snpsData', JSON.stringify(data.snps));
+      setIsProcessing(false)
       setIsOpen(true);
     };
 
@@ -132,11 +136,11 @@ export default function DropUpload() {
             </div>
             <button
                 type="button"
-                onClick={uploadToServer}
+                onClick={uploadToLocalStorage}
                 disabled={!file || isProcessing}
                 className="mt-4 rounded-md bg-gray-800 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 transition ease-in-out duration-150"
             >
-                Continue
+                {isProcessing ? "Processing..." : "Continue"}
             </button>
             <button
                 type="button"

@@ -76,7 +76,7 @@ Admittedly, this was a very large project for me to create. If you'd like to sup
 
 ## Limitations
 
-Proper sorting and search functionality have not been added yet.
+Proper sorting and search functionality have not been added yet. An export feature is also planned for the future.
 
 ## License
 

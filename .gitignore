@@ -1,5 +1,4 @@
 .next
 node_modules
 public/modules
-public/uploads
 .DS_Store

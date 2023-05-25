@@ -4,7 +4,6 @@ import axios from 'axios';
 import { Cog6ToothIcon } from '@heroicons/react/24/outline'
 
 export default function Compiler() {
-  var dna = require('/public/uploads/dna.json');
 
   const [arr, setArr] = useState([]);
 

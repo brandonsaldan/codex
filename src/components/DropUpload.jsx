@@ -11,22 +11,28 @@ export default function DropUpload() {
     }
 
     const uploadToClient = (event) => {
-        if (event.target.files && event.target.files[0]) {
-        const i = event.target.files[0];
-
-        setFile(i);
-        }
+      if (event.target.files && event.target.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const fileContent = e.target.result;
+          localStorage.setItem('uploadedFileContent', fileContent);
+          setFile(event.target.files[0]);
+        };
+        reader.readAsText(event.target.files[0]);
+      }
     };
 
     const uploadToServer = async (event) => {    
-      fileProcessing()    
-        const body = new FormData();
-        body.append("file", file);    
-        const response = await fetch("/api/upload", {
+      fileProcessing();
+      const body = new FormData();
+      body.append("file", file);
+      const response = await fetch("/api/upload", {
         method: "POST",
         body
-        });
-        setIsOpen(true)
+      });
+      const data = await response.json();
+      localStorage.setItem('snpsData', JSON.stringify(data.snps));
+      setIsOpen(true);
     };
 
     let [isOpen, setIsOpen] = useState(false)

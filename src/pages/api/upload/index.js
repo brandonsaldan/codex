@@ -18,31 +18,22 @@ export default async (req, res) => {
       if (err) return reject(err);
       var oldPath = files.file.filepath;
       var newPath = `./public/uploads/${files.file.originalFilename}`;
-      mv(oldPath, newPath, function (err) {});
-      res.status(200).json({ fields, files });
-      var txt = fs.readFileSync(newPath, 'utf8');
-      dna.parse(txt, function (err, snps) {
-        if (err) {
-          console.error('Error parsing DNA:', err);
-          return;
-        }
-        console.log(snps);
-        fs.writeJson('./public/uploads/dna.json', snps, function (err) {
-          if (err) {
-            console.error('Error writing DNA JSON file:', err);
-            return;
-          }
-          console.log('SNPs written to dna.json file');
-
-          fs.remove(newPath, function (err) {
-            if (err) {
-              console.error('Error removing file:', err);
-              return;
-            }
-            console.log('Previous file removed');
-          });
-        });
+      mv(oldPath, newPath, function (err) {
+        if (err) return reject(err);
+        var txt = fs.readFileSync(newPath, 'utf8');
+        resolve(txt);
       });
     });
+  });
+
+  dna.parse(data, function (err, snps) {
+    if (err) {
+      console.error('Error parsing DNA:', err);
+      res.status(500).json({ error: 'Error parsing DNA' });
+      return;
+    }
+    console.log(snps);
+
+    res.status(200).json({ snps });
   });
 };

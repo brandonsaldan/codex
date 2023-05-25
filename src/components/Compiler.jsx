@@ -5,13 +5,18 @@ import { Cog6ToothIcon } from '@heroicons/react/24/outline'
 import { useRouter } from 'next/router'
 
 export default function Compiler() {
-  const { pathname } = useRouter()
-
-  if (pathname === '/results') {
-    var dna = require('/public/uploads/dna.json');
-  }
-
+  const { pathname } = useRouter();
   const [arr, setArr] = useState([]);
+  const [dna, setDNA] = useState({});
+
+  useEffect(() => {
+    if (pathname === '/results') {
+      const storedDNA = localStorage.getItem('snpsData');
+      if (storedDNA) {
+        setDNA(JSON.parse(storedDNA));
+      }
+    }
+  }, [pathname]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,12 +39,12 @@ export default function Compiler() {
               snp +
               formattedAllele +
               '&rvsection=0';
-    
+
             try {
               const response = await axios.get(url);
               var parser = new DOMParser();
               var xmlDoc = parser.parseFromString(response.data, 'text/xml');
-    
+
               var revNode = xmlDoc.getElementsByTagName('rev')[0];
               if (revNode && revNode.childNodes.length > 0) {
                 var text = revNode.childNodes[0].nodeValue;
@@ -53,9 +58,9 @@ export default function Compiler() {
                   .split('=')[1]
                   .split('|')[0]
                   .trim();
-                  if (repute.length < 1) {
-                    repute = 'Unassigned'
-                  }
+                if (repute.length < 1) {
+                  repute = 'Unassigned';
+                }
                 var summary = text
                   .split('summary')[1]
                   .split('=')[1]
@@ -66,7 +71,7 @@ export default function Compiler() {
 
                 // Capitalize the first letter of the summary
                 summary = summary.charAt(0).toUpperCase() + summary.slice(1);
-    
+
                 var snpTitle = snpsFromJsonFiles.find((item) => item.snps.includes(snp)).title;
 
                 // Remove "snps_" and replace underscores with spaces
@@ -115,7 +120,7 @@ export default function Compiler() {
     };
 
     fetchData();
-  }, []);
+  }, [dna]);
 
   return (
     <div className="mt-4 grid grid-cols-1 gap-4">

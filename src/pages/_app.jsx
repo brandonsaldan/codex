@@ -19,7 +19,7 @@ export default function App({ Component, pageProps }) {
     />
     <link rel="icon" href="/images/logo.png" />
     {/* Open Graph / Facebook */}
-    <meta property="og:image" content="/images/og-image.png" />
+    <meta property="og:image" content="https://raw.githubusercontent.com/brandonsaldan/codex/main/public/images/og-image.png" />
     <meta property="og:image:width" content="1760"/>
     <meta property="og:image:height" content="880"/>
     <meta property="og:title" content="GeneCodex" />
@@ -31,7 +31,7 @@ export default function App({ Component, pageProps }) {
     <meta name="twitter:domain" content="https://codex-brandonsaldan.vercel.app/" />
     <meta name="twitter:title" content="GeneCodex" />
     <meta name="twitter:description" content="GeneCodex is a free, open-source tool that analyzes your DNA data and provides you with a report of your genetic variants." />
-    <meta name="twitter:image" content="/images/og-image.png" />
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/brandonsaldan/codex/main/public/images/og-image.png" />
   </Head>
   <Component {...pageProps} />
   </>

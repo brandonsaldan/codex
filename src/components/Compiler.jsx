@@ -2,8 +2,14 @@ import { useEffect, useState } from 'react';
 import SNPCard from './ui/SNPCard';
 import axios from 'axios';
 import { Cog6ToothIcon } from '@heroicons/react/24/outline'
+import { useRouter } from 'next/router'
 
 export default function Compiler() {
+  const { pathname } = useRouter()
+
+  if (pathname === '/results') {
+    var dna = require('/public/uploads/dna.json');
+  }
 
   const [arr, setArr] = useState([]);
 

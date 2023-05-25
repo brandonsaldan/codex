@@ -21,19 +21,23 @@ export default async (req, res) => {
       mv(oldPath, newPath, function (err) {});
       res.status(200).json({ fields, files });
       var txt = fs.readFileSync(newPath, 'utf8');
-      var json = dna.parse(txt, function (err, snps) {
+      dna.parse(txt, function (err, snps) {
+        if (err) {
+          console.error('Error parsing DNA:', err);
+          return;
+        }
         console.log(snps);
         fs.writeJson('./public/uploads/dna.json', snps, function (err) {
           if (err) {
-            console.error('Error writing JSON file:', err);
+            console.error('Error writing DNA JSON file:', err);
             return;
           }
-          console.log('SNPs written to snps.json file');
+          console.log('SNPs written to dna.json file');
 
           fs.remove(newPath, function (err) {
             if (err) {
-                console.error('Error removing file:', err);
-                return;
+              console.error('Error removing file:', err);
+              return;
             }
             console.log('Previous file removed');
           });

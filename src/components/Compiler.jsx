@@ -175,7 +175,7 @@ export default function Compiler() {
           <Cog6ToothIcon className="w-8 h-8 mx-auto text-gray-500 animate-spin" />
           <h1 className="text-lg font-semibold text-center">Generating Report</h1>
           <h2 className="text-sm text-center">This may take a few minutes.</h2>
-          <p className="text-sm text-center">Parsed {count} SNPs.</p>
+          <p className="text-sm text-center">Processed {count} SNPs.</p>
         </div>
       )}
     </div>

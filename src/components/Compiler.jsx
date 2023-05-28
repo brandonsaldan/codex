@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Cog6ToothIcon } from '@heroicons/react/24/outline'
 import { useRouter } from 'next/router'
 import { openDatabase } from './DropUpload';
+import ErrorMessage from './ui/ErrorMessage';
 
 export default function Compiler() {
   const { pathname } = useRouter();
@@ -29,15 +30,23 @@ export default function Compiler() {
 
           getRequest.onerror = function (event) {
             console.log('Error retrieving data from database');
+            return (
+              <ErrorMessage title="IndexedDB Error" desc="GeneCodex could not retrieve your file from your browser's Indexed Database. Please try again." />
+            )
           };
         } catch (error) {
           console.log('Error opening the database:', error);
+          return (
+            <ErrorMessage title="IndexedDB Error" desc="GeneCodex could not open your browser's Indexed Database. Please try again." />
+          )
         }
       };
 
       readDataFromDB();
     }
   }, [pathname]);
+
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,9 +61,11 @@ export default function Compiler() {
           var allele = value.genotype;
           var formattedAllele = '(' + allele[0] + ';' + allele[1] + ')';
           var frontendURL = 'https://www.snpedia.com/index.php/' + snp + formattedAllele;
+          
 
           // Check if the SNP exists in the scraped data
           if (snpsFromJsonFiles.some((item) => item.snps.includes(snp))) {
+            setCount(prevCount => prevCount + 1)
             var url =
               'https://bots.snpedia.com/api.php?origin=*&action=query&prop=revisions&rvprop=content&format=xml&titles=' +
               snp +
@@ -164,6 +175,7 @@ export default function Compiler() {
           <Cog6ToothIcon className="w-8 h-8 mx-auto text-gray-500 animate-spin" />
           <h1 className="text-lg font-semibold text-center">Generating Report</h1>
           <h2 className="text-sm text-center">This may take a few minutes.</h2>
+          <p className="text-sm text-center">Parsed {count} SNPs.</p>
         </div>
       )}
     </div>

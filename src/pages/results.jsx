@@ -28,6 +28,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import Compiler from '../components/Compiler'
+import { count, setCount } from '../components/Compiler'
 
 const filters = [
   { id: 1, name: 'Appearance', href: '#', initial: 'A', current: false },

@@ -21,6 +21,7 @@ import {
   ChartPieIcon,
   Cog6ToothIcon,
   DocumentDuplicateIcon,
+  ExclamationCircleIcon,
   FolderIcon,
   HomeIcon,
   UsersIcon,
@@ -28,7 +29,6 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import Compiler from '../components/Compiler'
-import { count, setCount } from '../components/Compiler'
 
 const filters = [
   { id: 1, name: 'Appearance', href: '#', initial: 'A', current: false },
@@ -57,9 +57,58 @@ function classNames(...classes) {
 
 export default function Results() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [show, setShow] = useState(false)
+
+  function ShowNotification() {
+    setShow(true)
+  }
 
   return (
     <>
+      {/* Global notification live region, render this permanently at the end of the document */}
+      <div
+        aria-live="assertive"
+        className="pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:p-6"
+      >
+        <div className="flex w-full flex-col items-center space-y-4 sm:items-end mt-14">
+          {/* Notification panel, dynamically insert this into the live region when it needs to be displayed */}
+          <Transition
+            show={show}
+            as={Fragment}
+            enter="transform ease-out duration-300 transition"
+            enterFrom="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
+            enterTo="translate-y-0 opacity-100 sm:translate-x-0"
+            leave="transition ease-in duration-100"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+              <div className="p-4">
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 mt-1">
+                    <ExclamationCircleIcon className="h-6 w-6 text-gray-500" aria-hidden="true" />
+                  </div>
+                  <div className="ml-3 w-0 flex-1">
+                    <p className="text-sm text-gray-500">Sorting results is currently not supported and is under development.</p>
+                  </div>
+                  <div className="ml-4 flex flex-shrink-0">
+                    <button
+                      type="button"
+                      className="inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      onClick={() => {
+                        setShow(false)
+                      }}
+                    >
+                      <span className="sr-only">Close</span>
+                      <XMarkIcon className="h-5 w-5" aria-hidden="true" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Transition>
+        </div>
+      </div>
       <div>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as="div" className="relative z-50 lg:hidden" onClose={setSidebarOpen}>
@@ -120,6 +169,7 @@ export default function Results() {
                               <li key={filter.name}>
                                 <a
                                   href={filter.href}
+                                  onClick={ShowNotification}
                                   className={classNames(
                                     filter.current
                                       ? 'bg-gray-50 text-indigo-600'
@@ -150,6 +200,7 @@ export default function Results() {
                               <li key={sort.name}>
                                 <a
                                   href={sort.href}
+                                  onClick={ShowNotification}
                                   className={classNames(
                                     sort.current
                                       ? 'bg-gray-50 text-indigo-600'
@@ -202,6 +253,7 @@ export default function Results() {
                       <li key={filter.name}>
                         <a
                           href={filter.href}
+                          onClick={ShowNotification}
                           className={classNames(
                             filter.current
                               ? 'bg-gray-50 text-indigo-600'
@@ -232,6 +284,7 @@ export default function Results() {
                       <li key={sort.name}>
                         <a
                           href={sort.href}
+                          onClick={ShowNotification}
                           className={classNames(
                             sort.current
                               ? 'bg-gray-50 text-indigo-600'

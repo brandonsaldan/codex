@@ -106,15 +106,24 @@ export default function Compiler() {
 
                 var snpTitle = snpsFromJsonFiles.find((item) => item.snps.includes(snp)).title;
 
-                // Remove "snps_" and replace underscores with spaces
                 var formattedTitle = snpTitle.replace(/^snps_/i, '').replace(/_/g, ' ');
+
+                var words = formattedTitle.split(' ');
+
+                var capitalizedWords = words.map(word => {
+                  if (word.toLowerCase() === "alzheimer's") {
+                    return "Alzheimer's";
+                  } else {
+                    return word.charAt(0).toUpperCase() + word.slice(1);
+                  }
+                });
+
+                // Join the words back together with spaces
+                formattedTitle = capitalizedWords.join(' ');
 
                 // Get the category of the SNP
                 var category = snpsFromJsonFiles.find((item) => item.snps.includes(snp)).category;
                 var formattedCategory = category.charAt(0).toUpperCase() + category.slice(1);
-
-                // Capitalize the first letter of each word
-                formattedTitle = formattedTitle.replace(/\b\w/g, (c) => c.toUpperCase());
 
                 var obj = newArr.find((item) => item.snp === snp);
                 if (obj) {
@@ -146,6 +155,22 @@ export default function Compiler() {
         newArr.sort((a, b) => b.mag - a.mag);
 
         setArr(newArr);
+
+        const db = await openDatabase();
+        const transaction = db.transaction(['GeneticData'], 'readwrite');
+        const objectStore = transaction.objectStore('GeneticData');
+        const putRequest = objectStore.put({
+          id: 'generatedReportData',
+          content: JSON.stringify(newArr),
+        });
+
+        putRequest.onsuccess = function (event) {
+          console.log('Data successfully added to IndexedDB');
+        };
+
+        putRequest.onerror = function (event) {
+          console.log('Error adding data to IndexedDB');
+        }
       } catch (error) {
         console.error('Error occurred while fetching data:', error);
       }

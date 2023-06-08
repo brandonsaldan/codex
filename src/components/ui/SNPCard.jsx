@@ -93,6 +93,8 @@ export default function SNPCard({ title, snp, allele, desc, mag, rep, snplink, c
                     {({ active }) => (
                     <a
                         href={snplink}
+                        target="_blank"
+                        rel="noreferrer noopener"
                         className={classNames(
                         active ? 'bg-gray-50' : '',
                         'block px-3 py-1 text-sm leading-6 text-gray-900'

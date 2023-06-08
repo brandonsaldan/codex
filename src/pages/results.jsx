@@ -29,6 +29,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import Compiler from '../components/Compiler'
+import ExportButton from '../components/ui/ExportButton'
 
 const filters = [
   { id: 1, name: 'Appearance', href: '#', initial: 'A', current: false },
@@ -405,10 +406,13 @@ export default function Results() {
 
           <main className="py-4">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="min-w-0 flex-1">
+                <div className="min-w-0 flex">
                     <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
                         Your Results
                     </h2>
+                    <div className="right-0 flex-shrink-0 ml-auto">
+                      <ExportButton />
+                    </div>
                 </div>
                 <Compiler />
             </div>

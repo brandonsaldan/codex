@@ -24,22 +24,39 @@ import {
   ExclamationCircleIcon,
   FolderIcon,
   HomeIcon,
-  UsersIcon,
+  UsersIcon as OutlineUsersIcon,
   XMarkIcon,
+  EyeIcon as OutlineEyeIcon,
+  FireIcon as OutlineFireIcon,
+  HeartIcon as OutlineHeartIcon,
+  BeakerIcon as OutlineBeakerIcon,
+  BoltIcon as OutlineBoltIcon,
+  MusicalNoteIcon as OutlineMusicalNoteIcon,
+  FaceSmileIcon as OutlineFaceSmileIcon
 } from '@heroicons/react/24/outline'
+import {
+  UsersIcon as SolidUsersIcon,
+  EyeIcon as SolidEyeIcon,
+  FireIcon as SolidFireIcon,
+  HeartIcon as SolidHeartIcon,
+  BeakerIcon as SolidBeakerIcon,
+  BoltIcon as SolidBoltIcon,
+  MusicalNoteIcon as SolidMusicalNoteIcon,
+  FaceSmileIcon as SolidFaceSmileIcon
+} from '@heroicons/react/24/solid'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import Compiler from '../components/Compiler'
 import ExportButton from '../components/ui/ExportButton'
 
 const filters = [
-  { id: 1, name: 'Appearance', href: '#', initial: 'A', current: false },
-  { id: 2, name: 'Endurance', href: '#', initial: 'E', current: false },
-  { id: 3, name: 'Haplogroup', href: '#', initial: 'H', current: false },
-  { id: 4, name: 'Health', href: '#', initial: 'H', current: false },
-  { id: 5, name: 'Medicines', href: '#', initial: 'M', current: false },
-  { id: 6, name: 'Mental', href: '#', initial: 'M', current: false },
-  { id: 7, name: 'Music', href: '#', initial: 'M', current: false },
-  { id: 8, name: 'Personality', href: '#', initial: 'P', current: false },
+  { id: 1, name: 'Appearance', href: '#', logo: OutlineEyeIcon, solidLogo: SolidEyeIcon, current: false },
+  { id: 2, name: 'Endurance', href: '#', logo: OutlineFireIcon, solidLogo: SolidFireIcon, current: false },
+  { id: 3, name: 'Haplogroup', href: '#', logo: OutlineUsersIcon, solidLogo: SolidUsersIcon, current: false },
+  { id: 4, name: 'Health', href: '#', logo: OutlineHeartIcon, solidLogo: SolidHeartIcon, current: false },
+  { id: 5, name: 'Medicines', href: '#', logo: OutlineBeakerIcon, solidLogo: SolidBeakerIcon, current: false },
+  { id: 6, name: 'Mental', href: '#', logo: OutlineBoltIcon, solidLogo: SolidBoltIcon, current: false },
+  { id: 7, name: 'Music', href: '#', logo: OutlineMusicalNoteIcon, solidLogo: SolidMusicalNoteIcon, current: false },
+  { id: 8, name: 'Personality', href: '#', logo: OutlineFaceSmileIcon, solidLogo: SolidFaceSmileIcon, current: false },
 ]
 const sortBy = [
   { id: 1, name: 'Alphabetical', href: '#', initial: 'A', current: false },
@@ -183,10 +200,10 @@ export default function Results() {
                                       filter.current
                                         ? 'text-indigo-600 border-indigo-600'
                                         : 'text-gray-400 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600',
-                                      'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white'
+                                      'flex h-6 w-6 shrink-0 items-center justify-center text-[0.625rem] font-medium'
                                     )}
                                   >
-                                    {filter.initial}
+                                    <filter.logo />
                                   </span>
                                   <span className="truncate">{filter.name}</span>
                                 </a>
@@ -252,28 +269,22 @@ export default function Results() {
                   <ul role="list" className="-mx-2 mt-2 space-y-1">
                     {filters.map((filter) => (
                       <li key={filter.name}>
+                        <div className="group">
                         <a
                           href={filter.href}
                           onClick={ShowNotification}
-                          className={classNames(
-                            filter.current
-                              ? 'bg-gray-50 text-indigo-600'
-                              : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50',
-                            'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
-                          )}
+                          className={filter.logo === OutlineEyeIcon ? 'group gap-x-3 rounded-md p-2 text-sm leading-6 transition ease-in-out duration-150 text-gray-700 border-200 group-hover:text-[#2e76e6] flex font-semibold' : filter.logo === OutlineFireIcon ? 'group gap-x-3 rounded-md p-2 text-sm leading-6 transition ease-in-out duration-150 text-gray-700 border-200 group-hover:text-[#ff2770] flex font-semibold' : filter.logo === OutlineUsersIcon ? 'group gap-x-3 rounded-md p-2 text-sm leading-6 transition ease-in-out duration-150 text-gray-700 border-200 group-hover:text-[#00d9ff] flex font-semibold' : filter.logo === OutlineHeartIcon ? 'group gap-x-3 rounded-md p-2 text-sm leading-6 transition ease-in-out duration-150 text-gray-700 border-200 group-hover:text-[#ff2770] flex font-semibold' : filter.logo === OutlineBeakerIcon ? 'group gap-x-3 rounded-md p-2 text-sm leading-6 transition ease-in-out duration-150 text-gray-700 border-200 group-hover:text-[#00a9a5] flex font-semibold' : filter.logo === OutlineBoltIcon ? 'group gap-x-3 rounded-md p-2 text-sm leading-6 transition ease-in-out duration-150 text-gray-700 border-200 group-hover:text-[#ffae03] flex font-semibold' : filter.logo === OutlineMusicalNoteIcon ? 'group gap-x-3 rounded-md p-2 text-sm leading-6 transition ease-in-out duration-150 text-gray-700 border-200 group-hover:text-[#011627] flex font-semibold' : filter.logo === OutlineFaceSmileIcon ? 'group gap-x-3 rounded-md p-2 text-sm leading-6 transition ease-in-out duration-150 text-gray-700 border-200 group-hover:text-[#725ac1] flex font-semibold' : ''}
+      
                         >
                           <span
-                            className={classNames(
-                              filter.current
-                                ? 'text-indigo-600 border-indigo-600'
-                                : 'text-gray-400 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600',
-                              'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white'
-                            )}
+                            className={filter.logo === OutlineEyeIcon ? 'transition ease-in-out duration-150 text-gray-400 border-gray-200 group-hover:text-[#2e76e6] flex h-6 w-6 shrink-0 items-center justify-center text-[0.625rem] font-medium' : filter.logo === OutlineFireIcon ? 'transition ease-in-out duration-150 text-gray-400 border-gray-200 group-hover:text-[#ff2770] flex h-6 w-6 shrink-0 items-center justify-center text-[0.625rem] font-medium' : filter.logo === OutlineUsersIcon ? 'transition ease-in-out duration-150 text-gray-400 border-gray-200 group-hover:text-[#00d9ff] flex h-6 w-6 shrink-0 items-center justify-center text-[0.625rem] font-medium' : filter.logo === OutlineHeartIcon ? 'transition ease-in-out duration-150 text-gray-400 border-gray-200 group-hover:text-[#ff2770] flex h-6 w-6 shrink-0 items-center justify-center text-[0.625rem] font-medium' : filter.logo === OutlineBeakerIcon ? 'transition ease-in-out duration-150 text-gray-400 border-gray-gray-200 group-hover:text-[#00a9a5] flex h-6 w-6 shrink-0 items-center justify-center text-[0.625rem] font-medium' : filter.logo === OutlineBoltIcon ? 'transition ease-in-out duration-150 text-gray-400 border-gray-gray-200 group-hover:text-[#ffae03] flex h-6 w-6 shrink-0 items-center justify-center text-[0.625rem] font-medium' : filter.logo === OutlineMusicalNoteIcon ? 'transition ease-in-out duration-150 text-gray-400 border-gray-gray-200 group-hover:text-[#011627] flex h-6 w-6 shrink-0 items-center justify-center text-[0.625rem] font-medium' : filter.logo === OutlineFaceSmileIcon ? 'transition ease-in-out duration-150 text-gray-400 border-gray-200 group-hover:text-[#725ac1] flex h-6 w-6 shrink-0 items-center justify-center text-[0.625rem] font-medium' : ''}
                           >
-                            {filter.initial}
+                            <filter.logo className="block group-hover:hidden transition ease-in-out duration-700" />
+                            <filter.solidLogo className="hidden group-hover:block transition ease-in-out duration-700" />
                           </span>
                           <span className="truncate">{filter.name}</span>
                         </a>
+                        </div>
                       </li>
                     ))}
                   </ul>
@@ -297,7 +308,7 @@ export default function Results() {
                             className={classNames(
                               sort.current
                                 ? 'text-indigo-600 border-indigo-600'
-                                : 'text-gray-400 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600',
+                                : 'text-gray-400 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600 transition ease-in-out duration-150',
                               'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white'
                             )}
                           >

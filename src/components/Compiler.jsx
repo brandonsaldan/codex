@@ -248,7 +248,7 @@ export default function Compiler({ filterOption, setFilterOption }) {
 
   return (
     <>
-    <div className="sticky top-0 z-40 lg:mx-auto lg:max-w-7xl lg:px-8 border-b border-gray-200 bg-white">
+    <div className="sticky top-0 z-40 lg:mx-auto lg:px-8 border-b border-gray-200 bg-white">
       <div className="flex h-16 items-center gap-x-4 px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-0 lg:shadow-none">
 
         {/* Separator */}
@@ -286,7 +286,7 @@ export default function Compiler({ filterOption, setFilterOption }) {
         </div>
       </div>
     </div>
-    <div className="min-w-0 flex max-w-7xl px-4 sm:px-6 lg:px-8 mt-4">
+    <div className="min-w-0 flex px-4 sm:px-6 lg:px-8 mt-4">
       <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
           Your Results
       </h2>
@@ -294,7 +294,7 @@ export default function Compiler({ filterOption, setFilterOption }) {
         <ExportButton />
       </div>
     </div>
-    <div className="mt-4 grid grid-cols-1 gap-4 max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className="mt-4 grid grid-cols-1 gap-4 px-4 sm:px-6 lg:px-8">
       {arr.length > 0 ? (
         filteredArr.length > 0 ? (
           filteredArr.map((item) => (

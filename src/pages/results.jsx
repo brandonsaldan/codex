@@ -85,12 +85,12 @@ export default function Results() {
   const ResetButton = () => {
     if (appliedFilters === true) {
       return (
-        <div class="group" onClick={resetFilters}>
-          <a href="#" class="group gap-x-3 rounded-md p-2 text-sm leading-6 transition ease-in-out duration-150 text-gray-700 border-200 group-hover:text-[#ff4882] flex font-semibold">
-            <span class="transition ease-in-out duration-150 text-gray-400 border-gray-200 group-hover:text-[#ff4882] flex h-6 w-6 shrink-0 items-center justify-center text-[0.625rem] font-medium">
+        <div className="group" onClick={resetFilters}>
+          <a href="#" className="group gap-x-3 rounded-md p-2 text-sm leading-6 transition ease-in-out duration-150 text-gray-700 border-200 group-hover:text-[#ff4882] flex font-semibold">
+            <span className="transition ease-in-out duration-150 text-gray-400 border-gray-200 group-hover:text-[#ff4882] flex h-6 w-6 shrink-0 items-center justify-center text-[0.625rem] font-medium">
               <XMarkIcon className="h-6 w-6 text-gray-400 group-hover:text-[#ff4882]" aria-hidden="true" />
             </span>
-            <span class="truncate">Reset Filters</span>
+            <span className="truncate">Reset Filters</span>
           </a>
         </div>
       )
